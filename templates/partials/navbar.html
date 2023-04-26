@@ -1,0 +1,91 @@
+<nav
+	class="flex flex-col md:flex-row items-center justify-between py-3 md:py-1 px-4 sm:px-6 md:px-5 lg:px-10 xl:px-16 md:min-h-[80px] bg-white nav__shadow"
+>
+	<!--nav logo and nav button -->
+	<section class="flex w-full md:w-max xl:w-[33%] justify-between">
+	<!-- navbar logo mobile-screen -->
+	<a href="/" class="md:hidden flex flex-col">
+		<p
+		class="relative text-2xl sm:text-3xl font-bold text-blue-800 w-max"
+		>
+		Re<span class="text-[var(--color-dark-green)]">cruit</span>ure
+		</p>
+
+		<small
+		class="text-[10px] sm:text-[11px] font-switzer-reg text-[var(--color-dark-blue)] -mt-[3px]"
+		>By Edubridge Academy</small
+		>
+	</a>
+
+	<!-- nav hamburger icon. availaible on mobile only -->
+	<button data-name="nav_button" class="md:hidden">
+		<svg
+		xmlns="http://www.w3.org/2000/svg"
+		fill="none"
+		viewBox="0 0 24 24"
+		stroke-width="1.5"
+		stroke="currentColor"
+		class="w-8 h-8"
+		>
+		<path
+			stroke-linecap="round"
+			stroke-linejoin="round"
+			d="M3.75 6.75h16.5M3.75 12h16.5M12 17.25h8.25"
+		/>
+		</svg>
+	</button>
+
+	<!-- navbar logo medium and larger screen -->
+	<a href="/" class="h-[65px] lg:h-[75px] hidden md:block">
+		<img
+		class="w-auto"
+		src="{% static 'img/recruiture-logo-svg.svg' %}"
+		alt="recruiture's logo icon"
+		/>
+	</a>
+	</section>
+
+	<!-- nav links (about employer blog) -->
+	<ul class="hidden gap-5 md:w-[33%] md:flex xl:gap-16 justify-center">
+	<li>
+		<a
+		class="text-[clamp(16px,2vw,22px)] text-[var(--color-dark-blue)] hover:text-[var(--color-dark-green)] tracking-wide"
+		href="./html/about.html"
+		>About</a
+		>
+	</li>
+
+	<li>
+		<button
+		data-name="employer-btn"
+		class="text-[clamp(16px,2vw,22px)] text-[var(--color-dark-blue)] hover:text-[var(--color-dark-green)] tracking-wide"
+		>
+		Employer
+		</button>
+	</li>
+
+	<li>
+		<a
+		class="text-[clamp(16px,2vw,22px)] text-[var(--color-dark-blue)] hover:text-[var(--color-dark-green)] tracking-wide"
+		href="./html/blog.html"
+		>Blog</a
+		>
+	</li>
+	</ul>
+
+	<!-- nav nav-buttons (getcertified hire a talent) -->
+	<div class="hidden justify-end md:flex gap-5 xl:w-[33%]">
+	<a
+		class="flex justify-center items-center transition-colors duration-200 text-[clamp(16px,2vw,20px)] text-[var(--color-dark-blue)] hover:text-white hover:bg-[var(--color-medium-green)] tracking-wide py-2 px-3 rounded-md border-2 border-gray-500 hover:border-[var(--color-medium-green)]"
+		href="https://edubridgeacademy.com/"
+		class=""
+		>Get certified</a
+	>
+
+	<a
+		data-name="employer-btn"
+		class="flex justify-center items-center transition-colors duration-200 bg-[var(--color-dark-green)] hover:bg-white hover:text-[var(--color-dark-green)] border-2 border-[var(--color-dark-green)] hover:border-gray-500 text-[clamp(16px,2vw,20px)] text-white tracking-wide py-2 px-3 rounded-md cursor-pointer"
+		>Hire a Talent</a
+	>
+	</div>
+</nav> 

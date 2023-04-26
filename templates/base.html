@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	{% load static %}
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
+	{% block extrastyle %}
+	{% endblock extrastyle %}
+
+    <link
+      rel="shortcut icon"
+      href="{% static  'img/recruiture-logo-svg.svg' %}"
+      type="image/x-icon"
+    />
+
+    <title> {% block title %} Recruiture | Edubridge Academy {% endblock title %} </title>
+
+    <script type="module" src="{% static 'js/index.js' %}" defer></script>
+    <script type="module" src="{% static 'js/sidebar.js' %}"></script>
+    <script type="module" src="{% static 'js/employer.js' %}"></script>
+
+  </head>
+
+  <body>
+
+
+    {% block content %}
+
+    {% endblock content %}
+
+
+  </body>
+</html>

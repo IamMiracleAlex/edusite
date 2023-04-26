@@ -1,0 +1,372 @@
+/* Bootsrap icons cdn link */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css");
+
+/*  Custom fonts declaration
+fonts url are declared relatively to the fonts folder.
+If the postcss file generarted lives in a different directory, then this declarations won't work.
+This declarations assumes that the generated css file lives in thesame directory as this current file
+*/
+@font-face {
+  font-family: "Switzer-Regular";
+  src: url("../fonts/switzer/Switzer-Regular.woff2") format("woff2"),
+    url("../fonts/switzer/Switzer-Regular.woff") format("woff"),
+    url("../fonts/switzer/Switzer-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Switzer-Medium";
+  src: url("../fonts/switzer/Switzer-Medium.woff2") format("woff2"),
+    url("../fonts/switzer/Switzer-Medium.woff") format("woff"),
+    url("../fonts/switzer/Switzer-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Satoshi-Bold";
+  src: url("../fonts/satoshi/Satoshi-Bold.woff2") format("woff2"),
+    url("../fonts/satoshi/Satoshi-Bold.woff") format("woff"),
+    url("../fonts/satoshi/Satoshi-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Satoshi-Black";
+  src: url("../fonts/satoshi/Satoshi-Black.woff2") format("woff2"),
+    url("../fonts/satoshi/Satoshi-Black.woff") format("woff"),
+    url("../fonts/satoshi/Satoshi-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-display: swap;
+  font-style: normal;
+}
+
+/* tailwind Directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* find variables and default elements styles here */
+@layer base {
+  :root {
+    --color-light-blue: #112f49;
+    --color-medium-blue: #0b1c2c;
+    --color-dark-blue: #000d18;
+    --color-light-green: #ccf57a;
+    --color-medium-green: #a2cc4f;
+    --color-dark-green: #81ab25;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    font-family: "Switzer-Medium", ui-sans-serif, system-ui, -apple-system,
+      BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+      "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+      "Segoe UI Symbol", "Noto Color Emoji";
+    scroll-behavior: smooth;
+  }
+
+  body {
+    max-width: 1536px;
+    @apply mx-auto;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+  }
+}
+
+/* --------------------------------------- */
+/*          custom utility classes         */
+/* --------------------------------------- */
+
+@layer utilities {
+  .animation {
+    @apply transition-all ease-linear duration-700;
+  }
+
+  .hide__scroll__bar::-webkit-scrollbar {
+    -webkit-appearance: none;
+    appearance: none;
+    display: none;
+  }
+
+  .line__clamp__3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+
+  .line__clamp__4 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+  }
+
+  .red {
+    border: 2px solid red;
+  }
+
+  /* animation classes */
+  .flip_vertical {
+    animation: flip_vertical 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  ::-webkit-scrollbar {
+    width: 3px;
+    height: 1px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgb(88, 88, 88);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(15, 50, 59);
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 2px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: gray;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgb(88, 88, 88);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(15, 50, 59);
+  }
+}
+
+/* --------------------------------------- */
+/*           Side Bar specific css         */
+/* --------------------------------------- */
+.sidebar__open {
+  @apply translate-x-0;
+}
+
+.sidebar__close {
+  @apply -translate-x-full;
+}
+
+/* --------------------------------------- */
+/*    Home page specific css (html/home)   */
+/* --------------------------------------- */
+.nav__shadow {
+  box-shadow: 6px 3px 8px rgba(0, 0, 0, 0.05);
+}
+
+.home__card__shadow {
+  box-shadow: 0px 14px 25px 5px rgba(0, 0, 0, 0.03);
+}
+
+.home__testimony:after {
+  content: " ";
+  position: absolute;
+  height: 100% !important;
+  width: 1px;
+  right: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  filter: blur(3px);
+}
+
+.home__testimony:before {
+  content: " ";
+  position: absolute;
+  height: 100%;
+  width: 1px;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  filter: blur(3px);
+}
+
+.home__testimonycard {
+  width: min(90%, 380px);
+  min-width: 270px;
+  min-height: max-content;
+  aspect-ratio: 0.95;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  @apply border transition-all duration-200;
+}
+
+.home_testimonycard_inactive {
+  opacity: 0.75;
+  transform: scale(0.8);
+}
+
+.home_testimonycard_active {
+  box-shadow: 1px 1px 20px rgb(221, 221, 221), -1px -1px 20px rgb(221, 221, 221);
+  @apply bg-white;
+  /* @apply transition-all duration-200 bg-white; */
+}
+
+.home_testimony_indicator_active {
+  @apply bg-[var(--color-light-green)];
+}
+.home_testimony_indicator_inactive {
+  @apply bg-[var(--color-medium-blue)];
+}
+
+.logos__animate {
+  animation: logos__animate 36s linear infinite;
+}
+
+.home_getcertified_bg {
+  background: linear-gradient(
+      0deg,
+      rgba(0, 24, 46, 0.85),
+      rgba(0, 24, 46, 0.85)
+    ),
+    url(../img/home/home-getcertified-image1.jpg);
+}
+
+@media screen and (min-width: 360px) {
+  .home__testimonycard {
+    min-width: 300px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .logos__animate {
+    animation: logos__animate 45s linear infinite;
+  }
+
+  .home__testimonycard {
+    min-width: 350px;
+  }
+}
+
+@keyframes logos__animate {
+  from {
+    transform: translateX(calc(-100% + 100vw));
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
+/* --------------------------------------- */
+/*           Homescreen Animation          */
+/* --------------------------------------- */
+.home_blur_animate {
+  filter: blur(12px);
+  opacity: 0;
+}
+.home_blur_animate.animate {
+  filter: blur(0px);
+  opacity: 1;
+}
+
+.home_scaleout_animate {
+  transform: scale(0);
+  opacity: 1;
+}
+.home_scaleout_animate.animate {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.home_slide_left {
+  transform: translateX(-100px);
+  opacity: 0;
+  overflow: hidden;
+}
+.home_slide_left.animate {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.home_slide_right {
+  transform: translateX(100px);
+  opacity: 0;
+  overflow: hidden;
+}
+.home_slide_right.animate {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.home_slide_bottom {
+  transform: translateY(100px);
+  opacity: 0;
+}
+.home_slide_bottom.animate {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* --------------------------------------- */
+/*       Employer Modal specific css       */
+/* --------------------------------------- */
+.employer_modal_open {
+  @apply opacity-100 z-50;
+}
+
+.employer_modal_close {
+  @apply opacity-0 -z-10;
+}
+
+/* --------------------------------------- */
+/*           temporary debuggers           */
+/* --------------------------------------- */
+
+.yellow {
+  outline: 4px solid yellow;
+}
+
+.blue {
+  outline: 2px solid blue;
+}
+.green {
+  outline: 2px solid green;
+}
+
+.color {
+  color: rgb(30, 30, 30);
+}
+
+/* --------------------------------------- */
+/*             Custom Keyframes            */
+/* --------------------------------------- */
+
+/* key frame classes are declared on the utilities layer */
+/* keyframes */
+@keyframes flip_vertical {
+  0% {
+    transform: rotateX(0);
+  }
+  100% {
+    transform: rotateX(-180deg);
+  }
+}
