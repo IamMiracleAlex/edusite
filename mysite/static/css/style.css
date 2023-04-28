@@ -2809,19 +2809,19 @@ img {
       from(rgba(0, 24, 46, 0.85)),
       to(rgba(0, 24, 46, 0.85))
     ),
-    url(../asssets/home/home-getcertified-image1.jpg);
+    url(../img/home/home-getcertified-image1.jpg);
   background: -o-linear-gradient(
       bottom,
       rgba(0, 24, 46, 0.85),
       rgba(0, 24, 46, 0.85)
     ),
-    url(../asssets/home/home-getcertified-image1.jpg);
+    url(../img/home/home-getcertified-image1.jpg);
   background: linear-gradient(
       0deg,
       rgba(0, 24, 46, 0.85),
       rgba(0, 24, 46, 0.85)
     ),
-    url(../asssets/home/home-getcertified-image1.jpg);
+    url(../img/home/home-getcertified-image1.jpg);
 }
 
 @media screen and (min-width: 360px) {

@@ -1,3 +1,5 @@
+{% load static %}
+
 <footer
 class="flex-col flex justify-center items-center py-10 pb-5 w-full h-max px-5 mt-10"
 >
@@ -9,7 +11,7 @@ class="flex-col flex justify-center items-center py-10 pb-5 w-full h-max px-5 mt
 	<a href="/" class="h-[65px] lg:h-[85px] block">
 	  <img
 		class="w-auto"
-		src="./asssets/recruiture-logo-svg.svg"
+		src="{% static 'img/recruiture-logo-svg.svg' %}"
 		alt="recruiture's logo icon"
 	  />
 	</a>

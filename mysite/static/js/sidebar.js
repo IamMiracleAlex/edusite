@@ -1,7 +1,15 @@
 /* --------------------------------------- */
-/*                 Side Bar                */
+/*              Dom Helpers                */
 /* --------------------------------------- */
-import { get, getAll } from "../utils.js";
+function get(name, from = document) {
+  if (from.querySelector(name)) return from.querySelector(name);
+  throw new Error(`The specified element ${name} was not found`);
+}
+
+function getAll(name, from = document) {
+  if (from.querySelectorAll(name)) return [...from.querySelectorAll(name)];
+  return [];
+}
 
 // Dom elements
 const sideBar = get(`[data-name="side_bar"]`);
@@ -35,5 +43,3 @@ document.addEventListener("DOMContentLoaded", () => {
     sideBar.classList.remove("invisible");
   }, 200);
 });
-
-export default handleSideBar;

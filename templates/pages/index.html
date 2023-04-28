@@ -1,20 +1,21 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 
 {% block content %}
 
    
     <!-- ------------- Nav Bar -------------- -->
-	{% include 'partials/navbar.html' %}
+	 {% include 'partials/navbar.html' %}
 
 
-    <!-- ------------- SideBar -------------- -->
+    <!--------------- SideBar ---------------->
 	{% include 'partials/sidebar.html' %}
 
 
-
     <!-- ------ Employer Modal section ------ -->
-    <section
+  <section
       id="employer-modal"
       data-status="close"
       class="employer_modal_close transition-opacity duration-300 ease-out fixed flex justify-center items-center top-0 bottom-0 left-0 right-0 bg-[#00182ED9]"
@@ -1092,7 +1093,9 @@
           </a>
         </div>
       </section>
-    </main>
+    </main> 
+
+    {% include 'partials/footer.html' %}
 
 {% endblock content %}
 

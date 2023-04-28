@@ -1,3 +1,5 @@
+{% load static %}
+
 <nav
 	class="flex flex-col md:flex-row items-center justify-between py-3 md:py-1 px-4 sm:px-6 md:px-5 lg:px-10 xl:px-16 md:min-h-[80px] bg-white nav__shadow"
 >
@@ -50,7 +52,7 @@
 	<li>
 		<a
 		class="text-[clamp(16px,2vw,22px)] text-[var(--color-dark-blue)] hover:text-[var(--color-dark-green)] tracking-wide"
-		href="./html/about.html"
+		href="{% url 'about' %}"
 		>About</a
 		>
 	</li>

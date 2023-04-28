@@ -1,5 +1,4 @@
-import handleSideBar from "../sidebar/sidebar.js";
-import { get, getAll } from "../utils.js";
+// Both the get and getAll functions are declared in the sideBar.js
 
 // dom
 const employerModal = get("#employer-modal");
@@ -15,7 +14,7 @@ const SuccessModalBtn = get("button", SuccessModal);
 const showModal = "employer_modal_open";
 const closeModal = "employer_modal_close";
 
-// func
+// functions
 function handleModal(modalEl) {
   const status = modalEl.dataset.status;
   if (status === "close") {
@@ -30,7 +29,7 @@ function handleModal(modalEl) {
 }
 
 function handleModalFromSidebar() {
-  handleSideBar();
+  handleSideBar(); //func declared in sidebar.js
   handleModal(employerModal);
 }
 
