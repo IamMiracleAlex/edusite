@@ -1,7 +1,7 @@
 {% load static %}
 
 <footer
-class="flex-col flex justify-center items-center py-10 pb-5 w-full h-max px-5 mt-10"
+class="flex-col flex justify-center items-center py-10 pb-5 w-full h-max px-5 mt-10 border-t"
 >
 <div
   class="max-w-6xl mx-auto gap-3 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4"
@@ -27,12 +27,12 @@ class="flex-col flex justify-center items-center py-10 pb-5 w-full h-max px-5 mt
 	<div class="flex flex-col space-y-3 mt-5">
 	  <a
 		class="font-switzer-reg text-[rgba(11,28,44,0.7)] text-[clamp(1rem,1.2vw,1.2rem)] max-w-md"
-		href="./html/about.html"
+		href="{% url 'about' %}"
 		>About us</a
 	  >
 	  <a
 		class="font-switzer-reg text-[rgba(11,28,44,0.7)] text-[clamp(1rem,1.2vw,1.2rem)] max-w-md"
-		href="./html/blog.html"
+		href="{% url 'post_list' %}"
 		>Blog</a
 	  >
 	  <a
@@ -69,7 +69,7 @@ class="flex-col flex justify-center items-center py-10 pb-5 w-full h-max px-5 mt
 	  >
 	  <a
 		class="font-switzer-reg text-[rgba(11,28,44,0.7)] text-[clamp(1rem,1.2vw,1.2rem)] max-w-md"
-		href="./html/employer.html"
+		href="https://edubridgeacademy.com"
 		>Get certified</a
 	  >
 	</div>
@@ -90,8 +90,8 @@ class="flex-col flex justify-center items-center py-10 pb-5 w-full h-max px-5 mt
 	  </p>
 	  <a
 		class="font-switzer-reg text-[rgba(11,28,44,0.7)] text-[clamp(1rem,1.2vw,1.2rem)] max-w-md"
-		href="mailto:recruiture@edubridgeacademy.com"
-		>recruiture@edubridgeacademy.com</a
+		href="mailto:hello@edubridgeacademy.com"
+		>hello@edubridgeacademy.com</a
 	  >
 	  <a
 		class="font-switzer-reg text-[rgba(11,28,44,0.7)] text-[clamp(1rem,1.2vw,1.2rem)] max-w-md"

@@ -1,830 +1,307 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../css/style.css" />
-    <link
-      rel="shortcut icon"
-      href="../asssets/recruiture-logo-svg.svg"
-      type="image/x-icon"
-    />
-    <script src="../js/utils.js" defer></script>
-    <script src="../js/sidebar.js" defer></script>
-    <script src="../js/employer.js" defer></script>
-    <title>Blog - Recruiture | Edubridge Academy</title>
-  </head>
-  <body>
-    <!-- ------------- Nav bar -------------- -->
-    <nav
-      class="flex flex-col md:flex-row items-center justify-between py-3 md:py-1 px-4 sm:px-6 md:px-5 lg:px-10 xl:px-16 md:min-h-[80px] bg-white nav__shadow"
-    >
-      <!--nav logo and nav button -->
-      <section class="flex w-full md:w-max xl:w-[33%] justify-between">
-        <!-- navbar logo mobile-screen -->
-        <a href="/" class="md:hidden flex flex-col">
-          <p
-            class="relative text-2xl sm:text-3xl font-bold text-blue-800 w-max"
-          >
-            Re<span class="text-[var(--color-dark-green)]">cruit</span>ure
-          </p>
+{% extends 'base.html' %}
 
-          <small
-            class="text-[10px] sm:text-[11px] font-switzer-reg text-[var(--color-dark-blue)] -mt-[3px]"
-            >By Edubridge Academy</small
-          >
-        </a>
+{% load static %}
 
-        <!-- nav hamburger icon. availaible on mobile only -->
-        <button data-name="nav_button" class="md:hidden">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="w-8 h-8"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M3.75 6.75h16.5M3.75 12h16.5M12 17.25h8.25"
-            />
-          </svg>
-        </button>
+{% block title %} Blog - {% endblock title %} 
 
-        <!-- navbar logo medium and larger screen -->
-        <a href="/" class="h-[65px] lg:h-[75px] hidden md:block">
+{% block content %}
+
+
+    <!-- ------------- Nav Bar -------------- -->
+	 {% include 'partials/navbar.html' %}
+
+    <!--------------- SideBar ---------------->
+	{% include 'partials/sidebar.html' %}
+
+
+  {% include 'partials/employer_modal.html' %}
+
+    <!-- page body -->
+    <main class="max-w-[900px] mx-auto mt-5 px-5">
+      <p class="text-[clamp(1rem,2vw,1.2rem)] text-[rgba(0,0,0,0.3)] mb-5">
+        Latest
+      </p>
+
+      {% for post in posts %}
+
+      <!-- single blog post card -->
+      <section class="mb-10 sm:mb-20">
+        <!-- blog title/header -->
+        <h2
+          class="font-satoshi-black text-[clamp(1.25rem,2.7vw,2.5rem)] text-[var(--color-medium-blue)] text-left mb-4"
+        >
+          <a href="{{ post.get_absolute_url }}" class="hover:opacity-75">
+           {{ post.title }}
+          </a>
+        </h2>
+
+        <!-- post sub-description -->
+        <p
+          class="text-[clamp(1rem,2vw,1.2rem)] text-[rgba(11,28,44,0.7)] leading-7 font-switzer-reg mb-4"
+        >
+          {{ post.body|striptags|truncatewords:20}}
+        </p>
+
+        <!-- blog image/banner (Pls replace img alt attribute)-->
+        <a href="#" class="my-6 blog__shadow block">
           <img
-            class="w-auto"
-            src="../asssets/recruiture-logo-svg.svg"
-            alt="recruiture's logo icon"
+            class="h-auto max-w-full max-h-[405px] object-cover"
+            src="{{ post.image.url }}"
+            alt="blog title here"
           />
         </a>
-      </section>
 
-      <!-- nav links (about employer blog) -->
-      <ul class="hidden gap-5 md:w-[33%] md:flex xl:gap-16 justify-center">
-        <li>
-          <a
-            class="text-[clamp(16px,2vw,22px)] text-[var(--color-dark-blue)] hover:text-[var(--color-dark-green)] tracking-wide"
-            href="./about.html"
-            >About</a
-          >
-        </li>
-
-        <li>
-          <button
-            data-name="employer-btn"
-            class="text-[clamp(16px,2vw,22px)] text-[var(--color-dark-blue)] hover:text-[var(--color-dark-green)] tracking-wide"
-          >
-            Employer
-          </button>
-        </li>
-
-        <li>
-          <a
-            class="text-[clamp(16px,2vw,22px)] text-[var(--color-dark-green)] hover:text-[var(--color-dark-green)] tracking-wide"
-            href="./blog.html"
-            >Blog</a
-          >
-        </li>
-      </ul>
-
-      <!-- nav nav-buttons (getcertified hire a talent) -->
-      <div class="hidden justify-end md:flex gap-5 xl:w-[33%]">
-        <a
-          class="flex justify-center items-center transition-colors duration-200 text-[clamp(16px,2vw,20px)] text-[var(--color-dark-blue)] hover:text-white hover:bg-[var(--color-medium-green)] tracking-wide py-2 px-3 rounded-md border-2 border-gray-500 hover:border-[var(--color-medium-green)]"
-          href="https://edubridgeacademy.com/"
-          class=""
-          >Get certified</a
-        >
-
-        <a
-          data-name="employer-btn"
-          class="flex justify-center items-center transition-colors duration-200 bg-[var(--color-dark-green)] hover:bg-white hover:text-[var(--color-dark-green)] border-2 border-[var(--color-dark-green)] hover:border-gray-500 text-[clamp(16px,2vw,20px)] text-white tracking-wide py-2 px-3 rounded-md cursor-pointer"
-          >Hire a Talent</a
-        >
-      </div>
-    </nav>
-
-    <!-- ------------- SideBar -------------- -->
-    <section
-      aria-modal="true"
-      data-status="close"
-      data-name="side_bar"
-      class="sidebar__close transition-transform duration-200 ease-linear md:hidden w-full h-screen z-50 fixed top-0 left-0 bottom-0 bg-white max-w-md invisible"
-    >
-      <!-- header -->
-      <div
-        class="flex w-full md:w-max xl:w-[33%] justify-between nav__shadow px-3 sm:px-5 py-2"
-      >
-        <!-- navbar logo mobile-screen -->
-        <a href="/" class="flex flex-col">
-          <p
-            class="relative text-2xl sm:text-3xl font-bold text-blue-800 w-max"
-          >
-            Re<span class="text-[var(--color-dark-green)]">cruit</span>ure
-          </p>
-
-          <small
-            class="text-[10px] sm:text-[11px] font-switzer-reg text-[var(--color-dark-blue)] -mt-[3px]"
-            >By Edubridge Academy</small
-          >
-        </a>
-
-        <!-- nav hamburger icon -->
-        <button
-          data-name="side_bar_button"
-          class="scale-150 text-3xl font-bold text-[var(--color-dark-blue)]"
-        >
-          <i class="bi bi-x"></i>
-        </button>
-      </div>
-
-      <!-- Nav links  -->
-      <ul class="flex flex-col gap-y-5 px-3 sm:px-5 py-5">
-        <li>
-          <a
-            class="text-[clamp(16px,2vw,22px)] text-[var(--color-dark-blue)] hover:text-[var(--color-dark-green)] tracking-wide"
-            href="/"
-            ><i class="bi bi-house-fill"></i> &nbsp; Home</a
-          >
-        </li>
-
-        <li>
-          <button
-            data-name="sidebar-employer-btn"
-            class="text-[clamp(16px,2vw,22px)] text-[var(--color-dark-blue)] hover:text-[var(--color-dark-green)] tracking-wide"
-          >
-            <i class="bi bi-envelope-paper"></i> &nbsp; Employer
-          </button>
-        </li>
-
-        <li>
-          <a
-            class="text-[clamp(16px,2vw,22px)] text-[var(--color-dark-blue)] hover:text-[var(--color-dark-green)] tracking-wide"
-            href="./blog.html"
-            ><i class="bi bi-blockquote-left"></i> &nbsp; Blog</a
-          >
-        </li>
-
-        <li>
-          <a
-            class="text-[clamp(16px,2vw,22px)] text-[var(--color-dark-blue)] hover:text-[var(--color-dark-green)] tracking-wide"
-            href="./about.html"
-            ><i class="bi bi-journal-album"></i> &nbsp; About</a
-          >
-        </li>
-
-        <li>
-          <a
-            class="flex justify-center items-center transition-colors duration-200 text-[clamp(16px,2vw,20px)] text-[var(--color-dark-blue)] hover:text-white hover:bg-[var(--color-medium-green)] tracking-wide py-2 px-3 rounded-md border-2 border-gray-500 hover:border-[var(--color-medium-green)]"
-            href="https://edubridgeacademy.com/"
-            class=""
-            >Get certified</a
-          >
-        </li>
-        <li>
-          <button
-            data-name="sidebar-employer-btn"
-            class="flex justify-center items-center transition-colors duration-200 bg-[var(--color-dark-green)] hover:bg-[var(--color-medium-green)] text-[clamp(16px,2vw,20px)] text-white tracking-wide py-2 px-3 rounded-md w-full"
-          >
-            Hire a Talent
-          </button>
-        </li>
-      </ul>
-
-      <!-- nav footer -->
-      <div class="grid grid-cols-2 gap-x-1 px-3 sm:px-5 py-5">
-        <!-- Company Info -->
-        <div>
-          <h3
-            class="font-satoshi-bold text-[clamp(1.1rem,1.4vw,1.4rem)] text-[var(--color-dark-green)]"
-          >
-            Company
-          </h3>
-
-          <div class="flex flex-col space-y-3 mt-3">
-            <a
-              class="font-switzer-reg text-[rgba(11,28,44,0.7)] text-[clamp(1rem,1.2vw,1.2rem)] max-w-md underline"
-              href="/#our-services"
-              >Our Services</a
-            >
-            <a
-              class="font-switzer-reg text-[rgba(11,28,44,0.7)] text-[clamp(1rem,1.2vw,1.2rem)] max-w-md underline"
-              href="/#our-value-propositions"
-              >Our value proposition</a
-            >
-            <a
-              class="font-switzer-reg text-[rgba(11,28,44,0.7)] text-[clamp(1rem,1.2vw,1.2rem)] max-w-md underline"
-              href="./employer.html"
-              >Get certified</a
-            >
-          </div>
-        </div>
-
-        <!-- Contact info -->
-        <div class="break-words">
-          <h3
-            class="font-satoshi-bold text-[clamp(1.1rem,1.4vw,1.4rem)] text-[var(--color-dark-green)]"
-          >
-            Get in Touch
-          </h3>
-
-          <div class="flex flex-col space-y-3 mt-3">
-            <p
-              class="font-switzer-reg text-[rgba(11,28,44,0.7)] text-[clamp(1rem,1.2vw,1.2rem)] max-w-md"
-            >
-              18, Bakare Dawodu Street, Ifako Gbagada Lagos.
-            </p>
-            <a
-              class="font-switzer-reg text-[rgba(11,28,44,0.7)] text-[clamp(1rem,1.2vw,1.2rem)] max-w-md underline"
-              href="mailto:recruiture@edubridgeacademy.com"
-              >recruiture@edubridgeacademy.com</a
-            >
-            <a
-              class="font-switzer-reg text-[rgba(11,28,44,0.7)] text-[clamp(1rem,1.2vw,1.2rem)] max-w-md underline"
-              href="tel:+234 906 066 6278"
-              >+234 906 066 6278</a
-            >
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ------ Employer Modal section ------ -->
-    <section
-      aria-modal="true"
-      id="employer-modal"
-      data-status="close"
-      class="employer_modal_close transition-opacity duration-300 ease-out fixed flex justify-center items-center top-0 bottom-0 left-0 right-0 bg-[#00182ED9]"
-    >
-      <!-- employer modal -->
-      <div
-        class="relative flex flex-col md:flex-row justify-center items-center w-screen max-w-[min(97%,525px)] md:w-full md:h-full md:max-h-[600px] md:max-w-2xl lg:max-w-[1000px] mx-auto md:my-16 rounded-3xl overflow-hidden"
-      >
-        <!-- ----------right image wrapper ---------- -->
-        <div class="w-full h-full md:max-h-[600px] hidden md:block">
-          <img
-            class="h-full md:max-h-[600px]"
-            src="../asssets/employer/employer-form-image-one.png"
-            alt=""
-          />
-        </div>
-
-        <!-- -----------left bg wrapper ----------- -->
+        <!-- blog footer -->
         <div
-          class="bg-[#F3F3F3] h-full md:max-h-[600px] w-full hidden md:block"
-        ></div>
-
-        <!-- form wrapper -->
-        <div
-          class="bg-[#FBFBFB] rounded-3xl md:absolute max-w-[min(97%,525px)] w-full md:right-[100px] px-5 py-7 sm:px-10"
+          class="flex space-x-6 md:space-x-0 sm:justify-between items-center mt-5 px-5"
         >
-          <!-- form header  -->
+          <!-- views -->
           <div>
-            <h3
-              class="font-satoshi-bold text-[clamp(1.125rem,2.1vw,2rem)] text-[var(--color-medium-blue)] leading-6"
-            >
-              Employer Form
-            </h3>
-            <small class="text-[var(--color-medium-blue)]">
-              Fill out these details to get started
-            </small>
-          </div>
-
-          <!-- form fields -->
-          <form id="employer-form">
-            <!-- first name -->
-            <article class="mt-7">
-              <input
-                class="w-full rounded-lg p-3"
-                placeholder="First name"
-                name="firstName"
-                type="text"
-              />
-            </article>
-
-            <!-- second name -->
-            <article class="mt-4">
-              <input
-                class="w-full rounded-lg p-3"
-                placeholder="Surname"
-                name="surname"
-                type="text"
-              />
-            </article>
-
-            <!-- company name -->
-            <article class="mt-4">
-              <input
-                class="w-full rounded-lg p-3"
-                placeholder="Company"
-                name="company"
-                type="text"
-              />
-            </article>
-
-            <!-- company name -->
-            <article class="mt-4">
-              <input
-                class="w-full rounded-lg p-3"
-                placeholder="Email"
-                name="email"
-                type="email"
-              />
-            </article>
-
-            <!-- company name -->
-            <article class="mt-4">
-              <select class="w-full rounded-lg p-3" name="role">
-                <option value="">Role you are recruiting for</option>
-              </select>
-            </article>
-
-            <button
-              class="w-full text-white text-center bg-[var(--color-dark-green)] hover:bg-[var(--color-medium-green)] p-3 mt-7 rounded-lg"
-            >
-              Submit
-            </button>
-          </form>
-        </div>
-
-        <!-- success modal wrapper -->
-        <div
-          data-status="close"
-          id="success-modal-wrapper"
-          class="employer_modal_close flex justify-center items-center bg-[#00182ED9] transition-opacity duration-300 ease-out absolute top-0 left-0 right-0 bottom-0"
-        >
-          <!-- success modal -->
-          <div
-            id="success-modal"
-            class="translate-y-[200%] bg-white w-[280px] sm:w-96 rounded-lg p-5 transition-transform duration-500"
-          >
-            <!-- header -->
-            <div
-              class="flex space-x-3 items-center justify-between border-b-2 border-[rgba(11,28,44,0.2)] pb-3"
-            >
-              <span>
-                <svg
-                  width="33"
-                  height="32"
-                  viewBox="0 0 33 32"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
-                    d="M9.03372 2.91021C10.3202 2.80749 11.5415 2.30147 12.5237 1.46421C13.633 0.51939 15.0426 0.000488281 16.4997 0.000488281C17.9569 0.000488281 19.3664 0.51939 20.4757 1.46421C21.4579 2.30147 22.6792 2.80749 23.9657 2.91021C25.4186 3.02632 26.7826 3.65613 27.8132 4.68674C28.8438 5.71734 29.4736 7.08135 29.5897 8.53421C29.6917 9.82021 30.1977 11.0422 31.0357 12.0242C31.9805 13.1335 32.4994 14.5431 32.4994 16.0002C32.4994 17.4574 31.9805 18.8669 31.0357 19.9762C30.1985 20.9584 29.6924 22.1797 29.5897 23.4662C29.4736 24.9191 28.8438 26.2831 27.8132 27.3137C26.7826 28.3443 25.4186 28.9741 23.9657 29.0902C22.6792 29.1929 21.4579 29.6989 20.4757 30.5362C19.3664 31.481 17.9569 31.9999 16.4997 31.9999C15.0426 31.9999 13.633 31.481 12.5237 30.5362C11.5415 29.6989 10.3202 29.1929 9.03372 29.0902C7.58086 28.9741 6.21686 28.3443 5.18625 27.3137C4.15565 26.2831 3.52583 24.9191 3.40972 23.4662C3.307 22.1797 2.80098 20.9584 1.96372 19.9762C1.0189 18.8669 0.5 17.4574 0.5 16.0002C0.5 14.5431 1.0189 13.1335 1.96372 12.0242C2.80098 11.042 3.307 9.82073 3.40972 8.53421C3.52583 7.08135 4.15565 5.71734 5.18625 4.68674C6.21686 3.65613 7.58086 3.02632 9.03372 2.91021ZM23.9137 13.4142C24.278 13.037 24.4796 12.5318 24.4751 12.0074C24.4705 11.483 24.2602 10.9814 23.8894 10.6106C23.5185 10.2398 23.0169 10.0294 22.4925 10.0249C21.9681 10.0203 21.4629 10.2219 21.0857 10.5862L14.4997 17.1722L11.9137 14.5862C11.5365 14.2219 11.0313 14.0203 10.5069 14.0249C9.98252 14.0294 9.4809 14.2398 9.11008 14.6106C8.73927 14.9814 8.52893 15.483 8.52437 16.0074C8.51981 16.5318 8.72141 17.037 9.08572 17.4142L13.0857 21.4142C13.4608 21.7892 13.9694 21.9998 14.4997 21.9998C15.03 21.9998 15.5387 21.7892 15.9137 21.4142L23.9137 13.4142Z"
-                    fill="#A2CC4F"
-                  />
-                </svg>
-              </span>
-              <span
-                class="text-center text-[clamp(15px,1.5vw,20px)] text-[var(--color-medium-blue)] font-satoshi-bold"
-                >Your application has been submitted!</span
-              >
-            </div>
-
-            <!-- footer -->
-            <div class="mt-3 text-center">
-              <small class="text-[rgba(0,0,0,0.75)] text-[13px]"
-                >Keep checking your mailbox- a recruiter from our team will
-                reach out to you for further assisstance</small
-              >
-              <button
-                class="flex justify-center items-center transition-colors duration-200 bg-[var(--color-dark-green)] hover:bg-[var(--color-medium-green)] text-white tracking-wide py-3 px-5 text-[11px] rounded-md mt-5 max-w-[230px] mx-auto"
-              >
-                Return to homepage
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <main class="px-5">
-      <!-- ------ Temporal Blog section ------- -->
-      <section class="mt-16 max-w-[900px] mx-auto">
-        <!-- -------- article Hero Image --------- -->
-        <div>
-          <h1
-            class="font-satoshi-black text-[clamp(1.25rem,2.7vw,2.5rem)] text-[var(--color-medium-blue)] text-center"
-          >
-            How To Start Your First Hiring Process
-          </h1>
-
-          <!-- hero image wrapper  -->
-          <!-- TODO// please add image alt attribute -->
-          <div class="mt-5">
-            <img
-              class="w-full max-h-[405px] object-cover"
-              src="../asssets/home/home-aboutus-image2.png"
-              alt="alt attribute here"
-            />
-          </div>
-
-          <!-- authors name and date -->
-          <div class="px-2 mt-3 max-w-[1000px] mx-auto">
             <p
-              class="font-switzer-reg text-[rgba(11,28,44,0.7)] text-[clamp(1rem,1.2vw,1.2rem)] max-w-md"
+              class="uppercase text-[clamp(0.75rem,1.2vw,1rem)] text-[rgba(0,0,0,0.3)]"
             >
-              <span>Suberu Hamzat</span>&nbsp; &nbsp;
-              <span> 27th jan 2023</span>
+              Views
             </p>
+            <h2
+              class="text-[clamp(1.5rem,2.7vw,2.5rem)] leading-none text-[var(--color-medium-green)]"
+            >
+              {{ post.views }}
+            </h2>
           </div>
-        </div>
 
-        <!-- --- article text content wrapper --- -->
-        <div class="mt-10">
-          <p
-            class="text-[clamp(15px,1.5vw,20px)] text-[var(--color-medium-blue)] font-switzer-med"
-          >
-            What are your main goals
-          </p>
-
-          <p
-            class="text-[clamp(1rem,1.2vw,1.2rem)] text-[rgba(11,28,44,0.7)] font-switzer-reg mt-4"
-          >
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam,
-            dolore? Dolore, consectetur quam laudantium fugiat assumenda
-            consequatur obcaecati praesentium in sed cumque, alias aliquam
-            corporis inventore. Nobis ut adipisci tenetur. <br />
-            <br />
-
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui,
-            aspernatur atque. Quos, illum! Ab consequuntur veniam nesciunt odit,
-            praesentium quisquam possimus neque, amet velit nobis soluta dolores
-            fugiat similique voluptas?
-          </p>
-
-          <p
-            class="text-[clamp(15px,1.5vw,20px)] text-[var(--color-medium-blue)] font-switzer-med mt-10"
-          >
-            What are your main goals
-          </p>
-
-          <p
-            class="text-[clamp(1rem,1.2vw,1.2rem)] text-[rgba(11,28,44,0.7)] font-switzer-reg mt-4"
-          >
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam,
-            dolore? Dolore, consectetur quam laudantium fugiat assumenda
-            consequatur obcaecati praesentium in sed cumque, alias aliquam
-            corporis inventore. Nobis ut adipisci tenetur. <br />
-            <br />
-
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui,
-            aspernatur atque. Quos, illum! Ab consequuntur veniam nesciunt odit,
-            praesentium quisquam possimus neque, amet velit nobis soluta dolores
-            fugiat similique voluptas?
-          </p>
-
-          <p
-            class="text-[clamp(15px,1.5vw,20px)] text-[var(--color-medium-blue)] font-switzer-med mt-10"
-          >
-            What are your main goals
-          </p>
-
-          <ul class="mt-4 px-7">
-            <li
-              class="list-disc text-[clamp(1rem,1.2vw,1.2rem)] text-[rgba(11,28,44,0.7)] font-switzer-reg"
+          <!-- last updated -->
+          <div class="hidden sm:block">
+            <p
+              class="uppercase text-[clamp(0.75rem,1.2vw,1rem)] text-[rgba(0,0,0,0.3)]"
             >
-              To be able to recruit top notch talents across the globe without
-              any hassle
-            </li>
-          </ul>
-        </div>
-      </section>
+              Last updated
+            </p>
+            <h2 class="text-[clamp(15px,1.5vw,20px)] text-[rgba(11,28,44,0.7)]">
+              {% comment %} March 28, 2023 {% endcomment %}
+              {{ post.updated_at|date }}
+            </h2>
+          </div>
 
-      <!-- --------- related aricles ---------- -->
-      <section
-        class="mt-10 max-w-6xl mx-auto border-t-4 border-[rgba(11,28,44,0.2)]"
-      >
-        <h3
-          class="text-[clamp(15px,1.5vw,20px)] font-satoshi-black text-[var(--color-medium-blue)] mt-4"
-        >
-          Related articles
-        </h3>
-
-        <!-- ----------- blog wrapper ----------- -->
-        <div
-          class="mt-4 grid grid-cols-1 min-[525px]:grid-cols-2 min-[900px]:grid-cols-3 gap-3 min-[900px]:gap-5 gap-y-5"
-        >
-          <!-- card one -->
-          <article
-            onclick="navigate('/frontend/html/blog.html')"
-            class="max-w-[400px] mx-auto min-[525px]:mx-[unset] min-[525px]:max-w-[unset] cursor-pointer rounded-3xl border-[0.5px] border-[rgba(11,28,44,0.2)] group"
+          <!-- continue read btn -->
+          <a
+            href="{{ post.get_absolute_url }}"
+            class="py-3 px-5 sm:px-8 md:py-5 md:px-12 lg:px-24 text-[15px] sm:text-[clamp(1rem,1.2vw,1.2rem)] sm:tracking-wider rounded text-[rgb(129,171,37)] bg-[rgb(129,171,37)]/30 hover:bg-[rgb(129,171,37)] hover:text-[#efe5d0] transition-colors duration-150 ease-linear"
           >
-            <!-- image and image overlay -->
-            <div
-              class="relative h-60 group transition-transform duration-200 ease-out rounded-3xl"
-            >
-              <!-- image -->
-              <img
-                src="../asssets/home/home-aboutus-image1.png"
-                alt="image description here"
-              />
-
-              <!-- overlay -->
-              <div
-                class="absolute flex justify-center items-center bg-black bg-opacity-40 top-0 left-0 right-0 bottom-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 ease-out rounded-3xl"
-              >
-                <span
-                  class="text-white border-[var(--color-light-green)] border rounded-3xl p-2 px-10 scale-50 group-hover:scale-100 transition-transform duration-200 ease-out"
-                  >visit &nbsp; <i class="bi bi-link"></i>
-                </span>
-              </div>
-            </div>
-
-            <!-- post body (title, author, time) -->
-            <div class="px-5 py-3 relative group-hover:flip_vertical">
-              <!-- title -->
-              <h3
-                class="font-satoshi-bold text-[clamp(1.1rem,1.4vw,1.4rem)] text-[var(--color-light-blue)]"
-              >
-                How To Start Your First Hiring Process
-              </h3>
-
-              <!--author/date  -->
-              <div class="flex flex-wrap justify-between px-2 mt-3">
-                <p
-                  class="font-switzer-reg text-[rgba(11,28,44,0.7)] text-[clamp(1rem,1.2vw,1.2rem)] max-w-md"
-                >
-                  Suberu Hamzat
-                </p>
-                <p
-                  class="font-switzer-reg text-[rgba(11,28,44,0.7)] text-[clamp(1rem,1.5vw,1.25rem)] leading-[clamp(1.5rem,2vw,3rem)] max-w-md"
-                >
-                  27th jan 2023
-                </p>
-              </div>
-
-              <!-- post body overlay (post desc) -->
-              <div
-                class="absolute flip_vertical opacity-0 group-hover:opacity-100 top-0 rounded-3xl bottom-0 left-0 right-0 bg-white font-switzer-reg text-[rgb(11,28,44)] px-5 py-3 line__clamp__3"
-              >
-                <p class="line__clamp__4 text-[clamp(1rem,1.2vw,1.2rem)]">
-                  This quote by Winston Churchill really puts the life cycle of
-                  an entrepreneur in perspective. Failure won’t kill you, if you
-                  don’t let it. Experiencing this can give you more courage to
-                  try again. Even when you ‘make it’ and raise a lot of money or
-                  sell your company, life isn’t over. You might unfortunately,
-                  have a much clearer picture of the struggles, but then you get
-                  to start again with a new startup, or become an angel investor
-                  yourself.
-                </p>
-              </div>
-            </div>
-          </article>
-
-          <!-- card two -->
-          <article
-            onclick="navigate('/frontend/html/blog.html')"
-            class="max-w-[400px] mx-auto min-[525px]:mx-[unset] min-[525px]:max-w-[unset] cursor-pointer rounded-3xl border-[0.5px] border-[rgba(11,28,44,0.2)] group"
-          >
-            <!-- image and image overlay -->
-            <div
-              class="relative h-60 group transition-transform duration-200 ease-out rounded-3xl"
-            >
-              <!-- image -->
-              <img
-                src="../asssets/home/home-aboutus-image2.png"
-                alt="image description here"
-              />
-
-              <!-- overlay -->
-              <div
-                class="absolute flex justify-center items-center bg-black bg-opacity-40 top-0 left-0 right-0 bottom-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 ease-out rounded-3xl"
-              >
-                <span
-                  class="text-white border-[var(--color-light-green)] border rounded-3xl p-2 px-10 scale-50 group-hover:scale-100 transition-transform duration-200 ease-out"
-                  >visit &nbsp; <i class="bi bi-link"></i>
-                </span>
-              </div>
-            </div>
-
-            <!-- post body (title, author, time) -->
-            <div class="px-5 py-3 relative group-hover:flip_vertical">
-              <!-- title -->
-              <h3
-                class="font-satoshi-bold text-[clamp(1.1rem,1.4vw,1.4rem)] text-[var(--color-light-blue)]"
-              >
-                How To Start Your First Hiring Process
-              </h3>
-
-              <!--author/date  -->
-              <div class="flex flex-wrap justify-between px-2 mt-3">
-                <p
-                  class="font-switzer-reg text-[rgba(11,28,44,0.7)] text-[clamp(1rem,1.2vw,1.2rem)] max-w-md"
-                >
-                  Suberu Hamzat
-                </p>
-                <p
-                  class="font-switzer-reg text-[rgba(11,28,44,0.7)] text-[clamp(1rem,1.5vw,1.25rem)] leading-[clamp(1.5rem,2vw,3rem)] max-w-md"
-                >
-                  27th jan 2023
-                </p>
-              </div>
-
-              <!-- post body overlay (post desc) -->
-              <div
-                class="absolute flip_vertical opacity-0 group-hover:opacity-100 top-0 rounded-3xl bottom-0 left-0 right-0 bg-white font-switzer-reg text-[rgb(11,28,44)] px-5 py-3 line__clamp__3"
-              >
-                <p class="line__clamp__4 text-[clamp(1rem,1.2vw,1.2rem)]">
-                  This quote by Winston Churchill really puts the life cycle of
-                  an entrepreneur in perspective. Failure won’t kill you, if you
-                  don’t let it. Experiencing this can give you more courage to
-                  try again. Even when you ‘make it’ and raise a lot of money or
-                  sell your company, life isn’t over. You might unfortunately,
-                  have a much clearer picture of the struggles, but then you get
-                  to start again with a new startup, or become an angel investor
-                  yourself.
-                </p>
-              </div>
-            </div>
-          </article>
-
-          <!-- card three -->
-          <article
-            onclick="navigate('/frontend/html/blog.html')"
-            class="max-w-[400px] mx-auto min-[525px]:mx-[unset] min-[525px]:max-w-[unset] cursor-pointer rounded-3xl border-[0.5px] border-[rgba(11,28,44,0.2)] group"
-          >
-            <!-- image and image overlay -->
-            <div
-              class="relative h-60 group transition-transform duration-200 ease-out rounded-3xl"
-            >
-              <!-- image -->
-              <img
-                src="../asssets/home/home-aboutus-image3.png"
-                alt="image description here"
-              />
-
-              <!-- overlay -->
-              <div
-                class="absolute flex justify-center items-center bg-black bg-opacity-40 top-0 left-0 right-0 bottom-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 ease-out rounded-3xl"
-              >
-                <span
-                  class="text-white border-[var(--color-light-green)] border rounded-3xl p-2 px-10 scale-50 group-hover:scale-100 transition-transform duration-200 ease-out"
-                  >visit &nbsp; <i class="bi bi-link"></i>
-                </span>
-              </div>
-            </div>
-
-            <!-- post body (title, author, time) -->
-            <div class="px-5 py-3 relative group-hover:flip_vertical">
-              <!-- title -->
-              <h3
-                class="font-satoshi-bold text-[clamp(1.1rem,1.4vw,1.4rem)] text-[var(--color-light-blue)]"
-              >
-                How To Start Your First Hiring Process
-              </h3>
-
-              <!--author/date  -->
-              <div class="flex flex-wrap justify-between px-2 mt-3">
-                <p
-                  class="font-switzer-reg text-[rgba(11,28,44,0.7)] text-[clamp(1rem,1.2vw,1.2rem)] max-w-md"
-                >
-                  Suberu Hamzat
-                </p>
-                <p
-                  class="font-switzer-reg text-[rgba(11,28,44,0.7)] text-[clamp(1rem,1.5vw,1.25rem)] leading-[clamp(1.5rem,2vw,3rem)] max-w-md"
-                >
-                  27th jan 2023
-                </p>
-              </div>
-
-              <!-- post body overlay (post desc) -->
-              <div
-                class="absolute flip_vertical opacity-0 group-hover:opacity-100 top-0 rounded-3xl bottom-0 left-0 right-0 bg-white font-switzer-reg text-[rgb(11,28,44)] px-5 py-3 line__clamp__3"
-              >
-                <p class="line__clamp__4 text-[clamp(1rem,1.2vw,1.2rem)]">
-                  This quote by Winston Churchill really puts the life cycle of
-                  an entrepreneur in perspective. Failure won’t kill you, if you
-                  don’t let it. Experiencing this can give you more courage to
-                  try again. Even when you ‘make it’ and raise a lot of money or
-                  sell your company, life isn’t over. You might unfortunately,
-                  have a much clearer picture of the struggles, but then you get
-                  to start again with a new startup, or become an angel investor
-                  yourself.
-                </p>
-              </div>
-            </div>
-          </article>
-        </div>
-      </section>
-    </main>
-
-    <footer
-      class="flex-col flex justify-center items-center py-10 pb-5 w-full h-max px-5 mt-10 border-t"
-    >
-      <div
-        class="max-w-6xl mx-auto gap-3 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4"
-      >
-        <!-- navbar logo -->
-        <div>
-          <a href="/" class="h-[65px] lg:h-[85px] block">
-            <img
-              class="w-auto"
-              src="../asssets/recruiture-logo-svg.svg"
-              alt="recruiture's logo icon"
-            />
+            Click to continue reading
           </a>
         </div>
+      </section>
 
-        <div>
-          <h3
-            class="font-satoshi-bold text-[clamp(1.1rem,1.4vw,1.4rem)] text-[var(--color-light-blue)]"
-          >
-            Quick Links
-          </h3>
+      {% empty %}
 
-          <div class="flex flex-col space-y-3 mt-5">
-            <a
-              class="font-switzer-reg text-[rgba(11,28,44,0.7)] text-[clamp(1rem,1.2vw,1.2rem)] max-w-md"
-              href="#"
-              >About us</a
-            >
-            <a
-              class="font-switzer-reg text-[rgba(11,28,44,0.7)] text-[clamp(1rem,1.2vw,1.2rem)] max-w-md"
-              href="#"
-              >Blog</a
-            >
-            <a
-              class="font-switzer-reg text-[rgba(11,28,44,0.7)] text-[clamp(1rem,1.2vw,1.2rem)] max-w-md"
-              href="#"
-              >Employer</a
-            >
-            <a
-              class="font-switzer-reg text-[rgba(11,28,44,0.7)] text-[clamp(1rem,1.2vw,1.2rem)] max-w-md"
-              href="#"
-              >Testimonials</a
-            >
-          </div>
-        </div>
+      {% endfor %}
 
-        <div>
-          <h3
-            class="font-satoshi-bold text-[clamp(1.1rem,1.4vw,1.4rem)] text-[var(--color-light-blue)]"
-          >
-            Company
-          </h3>
-
-          <div class="flex flex-col space-y-3 mt-5">
-            <a
-              class="font-switzer-reg text-[rgba(11,28,44,0.7)] text-[clamp(1rem,1.2vw,1.2rem)] max-w-md"
-              href="#"
-              >Our Services</a
-            >
-            <a
-              class="font-switzer-reg text-[rgba(11,28,44,0.7)] text-[clamp(1rem,1.2vw,1.2rem)] max-w-md"
-              href="#"
-              >Our value proposition</a
-            >
-            <a
-              class="font-switzer-reg text-[rgba(11,28,44,0.7)] text-[clamp(1rem,1.2vw,1.2rem)] max-w-md"
-              href="#"
-              >Get certified</a
-            >
-          </div>
-        </div>
-
-        <div class="break-words">
-          <h3
-            class="font-satoshi-bold text-[clamp(1.1rem,1.4vw,1.4rem)] text-[var(--color-light-blue)]"
-          >
-            Get in Touch
-          </h3>
-
-          <div class="flex flex-col space-y-3 mt-5">
-            <p
-              class="font-switzer-reg text-[rgba(11,28,44,0.7)] text-[clamp(1rem,1.2vw,1.2rem)] max-w-md"
-            >
-              18, Bakare Dawodu Street, Ifako Gbagada Lagos.
-            </p>
-            <a
-              class="font-switzer-reg text-[rgba(11,28,44,0.7)] text-[clamp(1rem,1.2vw,1.2rem)] max-w-md"
-              href="mailto:recruiture@edubridgeacademy.com"
-              >recruiture@edubridgeacademy.com</a
-            >
-            <a
-              class="font-switzer-reg text-[rgba(11,28,44,0.7)] text-[clamp(1rem,1.2vw,1.2rem)] max-w-md"
-              href="tel:+234 906 066 6278"
-              >+234 906 066 6278</a
-            >
-          </div>
-        </div>
-      </div>
-
-      <div class="max-w-6xl mx-auto border-t mt-10 w-full">
-        <p
-          class="font-switzer-reg text-[rgba(11,28,44,0.7)] text-[clamp(1rem,1.2vw,1.2rem)] py-5"
+      {% comment %} <section class="mb-10 sm:mb-20">
+        <!-- blog title/header -->
+        <h2
+          class="font-satoshi-black text-[clamp(1.25rem,2.7vw,2.5rem)] text-[var(--color-medium-blue)] text-left mb-4"
         >
-          Copyright: Recruiture 2022. All rights reserved. Privacy & Terms
+          <a href="#" class="hover:opacity-75">
+            Affiliate SEO: We Analysed 10,000 Search Results to See Who Ranks
+          </a>
+        </h2>
+
+        <!-- post sub-description -->
+        <p
+          class="text-[clamp(1rem,2vw,1.2rem)] text-[rgba(11,28,44,0.7)] leading-7 font-switzer-reg mb-4"
+        >
+          Can niche affiliate sites still rank when the likes of Amazon and
+          Business Insider are competing against them? Here's the answer.
         </p>
-      </div>
-    </footer>
-  </body>
-</html>
+
+        <!-- blog image/banner (Pls replace img alt attribute)-->
+        <a href="#" class="my-6 blog__shadow block">
+          <img
+            class="h-auto max-w-full max-h-[405px] object-cover"
+            src="{% static 'img/blog/blog-two.jpg' %}"
+            alt="blog title here"
+          />
+        </a>
+
+        <!-- blog footer -->
+        <div
+          class="flex space-x-6 md:space-x-0 sm:justify-between items-center mt-5 px-5"
+        >
+          <!-- views -->
+          <div>
+            <p
+              class="uppercase text-[clamp(0.75rem,1.2vw,1rem)] text-[rgba(0,0,0,0.3)]"
+            >
+              Views
+            </p>
+            <h2
+              class="text-[clamp(1.5rem,2.7vw,2.5rem)] leading-none text-[var(--color-medium-green)]"
+            >
+              304
+            </h2>
+          </div>
+
+          <!-- last updated -->
+          <div class="hidden sm:block">
+            <p
+              class="uppercase text-[clamp(0.75rem,1.2vw,1rem)] text-[rgba(0,0,0,0.3)]"
+            >
+              Last updated
+            </p>
+            <h2 class="text-[clamp(15px,1.5vw,20px)] text-[rgba(11,28,44,0.7)]">
+              March 24, 2023
+            </h2>
+          </div>
+
+          <!-- continue read btn -->
+          <a
+            href="#"
+            class="py-3 px-5 sm:px-8 md:py-5 md:px-12 lg:px-24 text-[15px] sm:text-[clamp(1rem,1.2vw,1.2rem)] sm:tracking-wider rounded text-[rgb(129,171,37)] bg-[rgb(129,171,37)]/30 hover:bg-[rgb(129,171,37)] hover:text-[#efe5d0] transition-colors duration-150 ease-linear"
+          >
+            Click to continue reading
+          </a>
+        </div>
+      </section>
+
+      <section class="mb-10 sm:mb-20">
+        <!-- blog title/header -->
+        <h2
+          class="font-satoshi-black text-[clamp(1.25rem,2.7vw,2.5rem)] text-[var(--color-medium-blue)] text-left mb-4"
+        >
+          <a href="#" class="hover:opacity-75">
+            The $122Bn SEO Industry: 31 Success Stories (with Revenue Numbers)
+            for 2023
+          </a>
+        </h2>
+
+        <!-- post sub-description -->
+        <p
+          class="text-[clamp(1rem,2vw,1.2rem)] text-[rgba(11,28,44,0.7)] leading-7 font-switzer-reg mb-4"
+        >
+          If you're thinking about entering the space, or just want to know
+          who's out there, we've got you covered.
+        </p>
+
+        <!-- blog image/banner (Pls replace img alt attribute)-->
+        <a href="#" class="my-6 blog__shadow block">
+          <img
+            class="h-auto max-w-full max-h-[405px] object-cover"
+            src="{% static 'img/blog/blog-three.jpg' %}"
+            alt="blog title here"
+          />
+        </a>
+
+        <!-- blog footer -->
+        <div
+          class="flex space-x-6 md:space-x-0 sm:justify-between items-center mt-5 px-5"
+        >
+          <!-- views -->
+          <div>
+            <p
+              class="uppercase text-[clamp(0.75rem,1.2vw,1rem)] text-[rgba(0,0,0,0.3)]"
+            >
+              Views
+            </p>
+            <h2
+              class="text-[clamp(1.5rem,2.7vw,2.5rem)] leading-none text-[var(--color-medium-green)]"
+            >
+              792
+            </h2>
+          </div>
+
+          <!-- last updated -->
+          <div class="hidden sm:block">
+            <p
+              class="uppercase text-[clamp(0.75rem,1.2vw,1rem)] text-[rgba(0,0,0,0.3)]"
+            >
+              Last updated
+            </p>
+            <h2 class="text-[clamp(15px,1.5vw,20px)] text-[rgba(11,28,44,0.7)]">
+              February 9, 2023
+            </h2>
+          </div>
+
+          <!-- continue read btn -->
+          <a
+            href="#"
+            class="py-3 px-5 sm:px-8 md:py-5 md:px-12 lg:px-24 text-[15px] sm:text-[clamp(1rem,1.2vw,1.2rem)] sm:tracking-wider rounded text-[rgb(129,171,37)] bg-[rgb(129,171,37)]/30 hover:bg-[rgb(129,171,37)] hover:text-[#efe5d0] transition-colors duration-150 ease-linear"
+          >
+            Click to continue reading
+          </a>
+        </div>
+      </section>
+
+      <section class="mb-10 sm:mb-20">
+        <!-- blog title/header -->
+        <h2
+          class="font-satoshi-black text-[clamp(1.25rem,2.7vw,2.5rem)] text-[var(--color-medium-blue)] text-left mb-4"
+        >
+          <a href="#" class="hover:opacity-75">
+            This Review Site Founder Made $3.8M in 12 Months: An In-Depth
+            Interview
+          </a>
+        </h2>
+
+        <!-- post sub-description -->
+        <p
+          class="text-[clamp(1rem,2vw,1.2rem)] text-[rgba(11,28,44,0.7)] leading-7 font-switzer-reg mb-4"
+        >
+          When I saw how much money this site was making, I knew I had to reach
+          out to the founder.
+        </p>
+
+        <!-- blog image/banner (Pls replace img alt attribute)-->
+        <a href="#" class="my-6 blog__shadow block">
+          <img
+            class="h-auto max-w-full max-h-[405px] object-cover"
+            src="{% static 'img/blog/blog-four.jpg' %}"
+            alt="blog title here"
+          />
+        </a>
+
+        <!-- blog footer -->
+        <div
+          class="flex space-x-6 md:space-x-0 sm:justify-between items-center mt-5 px-5"
+        >
+          <!-- views -->
+          <div>
+            <p
+              class="uppercase text-[clamp(0.75rem,1.2vw,1rem)] text-[rgba(0,0,0,0.3)]"
+            >
+              Views
+            </p>
+            <h2
+              class="text-[clamp(1.5rem,2.7vw,2.5rem)] leading-none text-[var(--color-medium-green)]"
+            >
+              171
+            </h2>
+          </div>
+
+          <!-- last updated -->
+          <div class="hidden sm:block">
+            <p
+              class="uppercase text-[clamp(0.75rem,1.2vw,1rem)] text-[rgba(0,0,0,0.3)]"
+            >
+              Last updated
+            </p>
+            <h2 class="text-[clamp(15px,1.5vw,20px)] text-[rgba(11,28,44,0.7)]">
+              January 10, 2023
+            </h2>
+          </div>
+
+          <!-- continue read btn -->
+          <a
+            href="#"
+            class="py-3 px-5 sm:px-8 md:py-5 md:px-12 lg:px-24 text-[15px] sm:text-[clamp(1rem,1.2vw,1.2rem)] sm:tracking-wider rounded text-[rgb(129,171,37)] bg-[rgb(129,171,37)]/30 hover:bg-[rgb(129,171,37)] hover:text-[#efe5d0] transition-colors duration-150 ease-linear"
+          >
+            Click to continue reading
+          </a>
+        </div>
+      </section> {% endcomment %}
+    </main>
+
+
+    {% include 'partials/footer.html' %}
+
+{% endblock content %}
+

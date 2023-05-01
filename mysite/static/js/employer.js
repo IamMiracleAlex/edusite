@@ -70,5 +70,5 @@ SuccessModalWrapper.addEventListener("click", (e) => {
 });
 
 SuccessModalBtn.addEventListener("click", () => {
-  location.assign("/");
+  navigate("/");
 });
