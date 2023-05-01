@@ -1,6 +1,6 @@
 from django import forms
 
-from blog.models import Post
+from pages.models import Post
 
 # from ckeditor_uploader.widgets import CKEditorUploadingWidget
 
