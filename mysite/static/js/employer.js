@@ -1,4 +1,7 @@
 // Both the get and getAll functions are declared in the sideBar.js
+function navigate(url) {
+  location.assign(url);
+}
 
 // dom
 const employerModal = get("#employer-modal");
@@ -58,9 +61,37 @@ employerModal.addEventListener("click", (e) => {
   if (e.target === employerModal) handleModal(employerModal);
 });
 
+function sendData(employerForm) {
+  const xhr = new XMLHttpRequest();
+
+  // Bind the FormData object and the form element
+  const form_data = new FormData(employerForm);
+
+  // Define what happens on successful data submission
+  xhr.addEventListener("load", (event) => {
+    if (event.target.status == 200) {
+      handleShowSuccessModal();
+      employerForm.reset();
+
+    } else {
+      
+      data = JSON.parse(event.target.responseText)
+      alert(data.detail)
+      // alert('Oops! Something went wrong. Please try again later');
+    }
+
+  });
+
+  // Set up our request
+  xhr.open("POST", employerForm.action);
+
+  // The data sent is what the user provided in the form
+  xhr.send(form_data);
+}
+
 employerForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  handleShowSuccessModal();
+  sendData(employerForm)
 });
 
 SuccessModalWrapper.addEventListener("click", (e) => {

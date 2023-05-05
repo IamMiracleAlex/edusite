@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Post
+from .models import Post, Employer
 from .forms import PostAdminForm
 
 
@@ -18,3 +18,11 @@ class PostAdmin(admin.ModelAdmin):
 
     def short_title(self, obj):
         return obj.title[:20]
+
+
+@admin.register(Employer)
+class EmployerAdmin(admin.ModelAdmin):
+    list_display = ["first_name", "last_name", "company", "email", "role", "created_at"]
+    list_filter = ('created_at',)
+    search_fields = ('first_name', 'last_name', 'company', 'email', 'role')
+    date_hierarchy = 'created_at'

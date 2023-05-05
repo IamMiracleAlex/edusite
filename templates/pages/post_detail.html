@@ -25,14 +25,14 @@
           <h1
             class="font-satoshi-black text-[clamp(1.25rem,2.7vw,2.5rem)] text-[var(--color-medium-blue)] text-center"
           >
-            How To Start Your First Hiring Process
+           {{ post.title }}
           </h1>
 
           <!-- hero image wrapper  -->
           <div class="mt-5 rounded-3xl">
             <img
               class="w-full max-h-[500px] object-fill"
-              src="{% static 'img/home/home-aboutus-image2.png' %}"
+              src="{{ post.image.url }}"
               alt=""
             />
           </div>
@@ -42,8 +42,8 @@
             <p
               class="font-switzer-reg text-[rgba(11,28,44,0.7)] text-[clamp(1rem,1.2vw,1.2rem)] max-w-md"
             >
-              <span>Suberu Hamzat</span>&nbsp; &nbsp;
-              <span> 27th jan 2023</span>
+              <span>{{ post.get_author_name }}</span>&nbsp; &nbsp;
+              <span> {{ post.created_at|date }}</span>
             </p>
           </div>
         </div>
@@ -51,61 +51,14 @@
         <!-- --- article text content wrapper --- -->
         <div class="mt-10">
           <p
-            class="text-[clamp(15px,1.5vw,20px)] text-[var(--color-medium-blue)] font-switzer-med"
-          >
-            What are your main goals
-          </p>
-
-          <p
             class="text-[clamp(1rem,1.2vw,1.2rem)] text-[rgba(11,28,44,0.7)] font-switzer-reg mt-4"
           >
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam,
-            dolore? Dolore, consectetur quam laudantium fugiat assumenda
-            consequatur obcaecati praesentium in sed cumque, alias aliquam
-            corporis inventore. Nobis ut adipisci tenetur. <br />
-            <br />
+          {% comment %} <p> {% endcomment %}
 
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui,
-            aspernatur atque. Quos, illum! Ab consequuntur veniam nesciunt odit,
-            praesentium quisquam possimus neque, amet velit nobis soluta dolores
-            fugiat similique voluptas?
-          </p>
+          {{ post.body|safe }}
 
-          <p
-            class="text-[clamp(15px,1.5vw,20px)] text-[var(--color-medium-blue)] font-switzer-med mt-10"
-          >
-            What are your main goals
-          </p>
+        </p>
 
-          <p
-            class="text-[clamp(1rem,1.2vw,1.2rem)] text-[rgba(11,28,44,0.7)] font-switzer-reg mt-4"
-          >
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam,
-            dolore? Dolore, consectetur quam laudantium fugiat assumenda
-            consequatur obcaecati praesentium in sed cumque, alias aliquam
-            corporis inventore. Nobis ut adipisci tenetur. <br />
-            <br />
-
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui,
-            aspernatur atque. Quos, illum! Ab consequuntur veniam nesciunt odit,
-            praesentium quisquam possimus neque, amet velit nobis soluta dolores
-            fugiat similique voluptas?
-          </p>
-
-          <p
-            class="text-[clamp(15px,1.5vw,20px)] text-[var(--color-medium-blue)] font-switzer-med mt-10"
-          >
-            What are your main goals
-          </p>
-
-          <ul class="mt-4 px-7">
-            <li
-              class="list-disc text-[clamp(1rem,1.2vw,1.2rem)] text-[rgba(11,28,44,0.7)] font-switzer-reg"
-            >
-              To be able to recruit top notch talents across the globe without
-              any hassle
-            </li>
-          </ul>
         </div>
       </section>
 
@@ -124,6 +77,7 @@
           class="mt-4 grid grid-cols-1 min-[525px]:grid-cols-2 min-[900px]:grid-cols-3 gap-3 min-[900px]:gap-5 gap-y-5"
         >
           <!-- card one -->
+          {% for similar_post in similar_posts %}
           <article
             class="max-w-[400px] mx-auto min-[525px]:mx-[unset] min-[525px]:max-w-[unset] cursor-pointer rounded-3xl border-[0.5px] border-[rgba(11,28,44,0.2)] group"
           >
@@ -133,7 +87,8 @@
             >
               <!-- image -->
               <img
-                src="{% static 'img/home/home-aboutus-image1.png' %}"
+                {% comment %} src="{% static 'img/home/home-aboutus-image1.png' %}" {% endcomment %}
+                src="{{ similar_post.image.url }}"
                 alt="image description here"
               />
 
@@ -142,7 +97,7 @@
                 class="absolute flex justify-center items-center bg-black bg-opacity-40 top-0 left-0 right-0 bottom-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 ease-out rounded-3xl"
               >
                 <a
-                  href="#"
+                  href="{{ similar_post.get_absolute_url }}"
                   class="text-white border-[var(--color-light-green)] border rounded-3xl p-2 px-10 scale-50 group-hover:scale-100 transition-transform duration-200 ease-out"
                   >visit &nbsp; <i class="bi bi-link"></i>
                 </a>
@@ -155,7 +110,7 @@
               <h3
                 class="font-satoshi-bold text-[clamp(1.1rem,1.4vw,1.4rem)] text-[var(--color-light-blue)]"
               >
-                How To Start Your First Hiring Process
+                {{ similar_post.title }}
               </h3>
 
               <!--author/date  -->
@@ -163,12 +118,12 @@
                 <p
                   class="font-switzer-reg text-[rgba(11,28,44,0.7)] text-[clamp(1rem,1.2vw,1.2rem)] max-w-md"
                 >
-                  Suberu Hamzat
+                  {{ similar_post.get_author_name }}
                 </p>
                 <p
                   class="font-switzer-reg text-[rgba(11,28,44,0.7)] text-[clamp(1rem,1.5vw,1.25rem)] leading-[clamp(1.5rem,2vw,3rem)] max-w-md"
                 >
-                  27th jan 2023
+                  {{ similar_post.created_at|date }}
                 </p>
               </div>
 
@@ -177,152 +132,14 @@
                 class="absolute flip_vertical opacity-0 group-hover:opacity-100 top-0 rounded-3xl bottom-0 left-0 right-0 bg-white font-switzer-reg text-[rgb(11,28,44)] px-5 py-3 line__clamp__3"
               >
                 <p class="line__clamp__4 text-[clamp(1rem,1.2vw,1.2rem)]">
-                  This quote by Winston Churchill really puts the life cycle of
-                  an entrepreneur in perspective. Failure won’t kill you, if you
-                  don’t let it. Experiencing this can give you more courage to
-                  try again. Even when you ‘make it’ and raise a lot of money or
-                  sell your company, life isn’t over. You might unfortunately,
-                  have a much clearer picture of the struggles, but then you get
-                  to start again with a new startup, or become an angel investor
-                  yourself.
+                  {{ similar_post.body|safe|truncatewords:70 }}
                 </p>
               </div>
             </div>
           </article>
 
-          <!-- card two -->
-          <article
-            class="max-w-[400px] mx-auto min-[525px]:mx-[unset] min-[525px]:max-w-[unset] cursor-pointer rounded-3xl border-[0.5px] border-[rgba(11,28,44,0.2)] group"
-          >
-            <!-- image and image overlay -->
-            <div
-              class="relative h-60 group transition-transform duration-200 ease-out rounded-3xl"
-            >
-              <!-- image -->
-              <img
-                src="{% static 'img/home/home-aboutus-image2.png' %}"
-                alt="image description here"
-              />
+          {% endfor %}
 
-              <!-- overlay -->
-              <div
-                class="absolute flex justify-center items-center bg-black bg-opacity-40 top-0 left-0 right-0 bottom-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 ease-out rounded-3xl"
-              >
-                <a
-                  href="#"
-                  class="text-white border-[var(--color-light-green)] border rounded-3xl p-2 px-10 scale-50 group-hover:scale-100 transition-transform duration-200 ease-out"
-                  >visit &nbsp; <i class="bi bi-link"></i>
-                </a>
-              </div>
-            </div>
-
-            <!-- post body (title, author, time) -->
-            <div class="px-5 py-3 relative group-hover:flip_vertical">
-              <!-- title -->
-              <h3
-                class="font-satoshi-bold text-[clamp(1.1rem,1.4vw,1.4rem)] text-[var(--color-light-blue)]"
-              >
-                Why We Help You Vet Talented Applicants
-              </h3>
-
-              <!--author/date  -->
-              <div class="flex flex-wrap justify-between px-2 mt-3">
-                <p
-                  class="font-switzer-reg text-[rgba(11,28,44,0.7)] text-[clamp(1rem,1.2vw,1.2rem)] max-w-md"
-                >
-                  Suberu Hamzat
-                </p>
-                <p
-                  class="font-switzer-reg text-[rgba(11,28,44,0.7)] text-[clamp(1rem,1.5vw,1.25rem)] leading-[clamp(1.5rem,2vw,3rem)] max-w-md"
-                >
-                  27th jan 2023
-                </p>
-              </div>
-
-              <!-- post body overlay (post desc) -->
-              <div
-                class="absolute flip_vertical opacity-0 group-hover:opacity-100 top-0 rounded-3xl bottom-0 left-0 right-0 bg-white font-switzer-reg text-[rgb(11,28,44)] px-5 py-3 line__clamp__3"
-              >
-                <p class="line__clamp__4 text-[clamp(1rem,1.2vw,1.2rem)]">
-                  This quote by Winston Churchill really puts the life cycle of
-                  an entrepreneur in perspective. Failure won’t kill you, if you
-                  don’t let it. Experiencing this can give you more courage to
-                  try again. Even when you ‘make it’ and raise a lot of money or
-                  sell your company, life isn’t over. You might unfortunately,
-                  have a much clearer picture of the struggles, but then you get
-                  to start again with a new startup, or become an angel investor
-                  yourself.
-                </p>
-              </div>
-            </div>
-          </article>
-
-          <!-- card three -->
-          <article
-            class="max-w-[400px] mx-auto min-[525px]:mx-[unset] min-[525px]:max-w-[unset] cursor-pointer rounded-3xl border-[0.5px] border-[rgba(11,28,44,0.2)] group"
-          >
-            <!-- image and image overlay -->
-            <div
-              class="relative h-60 group transition-transform duration-200 ease-out rounded-3xl"
-            >
-              <!-- image -->
-              <img
-                src="{% static 'img/home/home-aboutus-image3.png' %}"
-                alt="image description here"
-              />
-
-              <!-- overlay -->
-              <div
-                class="absolute flex justify-center items-center bg-black bg-opacity-40 top-0 left-0 right-0 bottom-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 ease-out rounded-3xl"
-              >
-                <a
-                  href="#"
-                  class="text-white border-[var(--color-light-green)] border rounded-3xl p-2 px-10 scale-50 group-hover:scale-100 transition-transform duration-200 ease-out"
-                  >visit &nbsp; <i class="bi bi-link"></i>
-                </a>
-              </div>
-            </div>
-
-            <!-- post body (title, author, time) -->
-            <div class="px-5 py-3 relative group-hover:flip_vertical">
-              <!-- title -->
-              <h3
-                class="font-satoshi-bold text-[clamp(1.1rem,1.4vw,1.4rem)] text-[var(--color-light-blue)]"
-              >
-                Putting Your Company In Our Hands Is Top-tier
-              </h3>
-
-              <!--author/date  -->
-              <div class="flex flex-wrap justify-between px-2 mt-3">
-                <p
-                  class="font-switzer-reg text-[rgba(11,28,44,0.7)] text-[clamp(1rem,1.2vw,1.2rem)] max-w-md"
-                >
-                  Suberu Hamzat
-                </p>
-                <p
-                  class="font-switzer-reg text-[rgba(11,28,44,0.7)] text-[clamp(1rem,1.5vw,1.25rem)] leading-[clamp(1.5rem,2vw,3rem)] max-w-md"
-                >
-                  27th jan 2023
-                </p>
-              </div>
-
-              <!-- post body overlay (post desc) -->
-              <div
-                class="absolute flip_vertical opacity-0 group-hover:opacity-100 top-0 rounded-3xl bottom-0 left-0 right-0 bg-white font-switzer-reg text-[rgb(11,28,44)] px-5 py-3 line__clamp__3"
-              >
-                <p class="line__clamp__4 text-[clamp(1rem,1.2vw,1.2rem)]">
-                  This quote by Winston Churchill really puts the life cycle of
-                  an entrepreneur in perspective. Failure won’t kill you, if you
-                  don’t let it. Experiencing this can give you more courage to
-                  try again. Even when you ‘make it’ and raise a lot of money or
-                  sell your company, life isn’t over. You might unfortunately,
-                  have a much clearer picture of the struggles, but then you get
-                  to start again with a new startup, or become an angel investor
-                  yourself.
-                </p>
-              </div>
-            </div>
-          </article>
         </div>
       </section>
     </main>

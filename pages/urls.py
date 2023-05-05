@@ -10,6 +10,5 @@ urlpatterns = [
     path('about', views.about, name='about'),
     path('blog', views.post_list, name='post_list'),
     path('blog/<int:pk>/<slug:slug>/', views.post_detail, name='post_detail'),
-    # path('tag/<slug:tag_slug>/', views.blog_index, name='posts_by_tag'),
-    # path('search/', views.blog_search, name='blog_search'),
+    path('employer-form', views.employer_form, name='employer_form'),
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

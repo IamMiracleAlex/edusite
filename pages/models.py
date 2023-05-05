@@ -35,6 +35,9 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse("post_detail", args=[self.pk, self.slug])
+    
+    def get_author_name(self):
+        return self.author.get_full_name() if self.author else ""
 
     def save(self, *args, **kwargs):
         if not self.pk:
@@ -52,3 +55,5 @@ class Employer(models.Model):
     company = models.CharField(max_length=200)
     email = models.EmailField(max_length=200)
     role = models.CharField(max_length=200)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)

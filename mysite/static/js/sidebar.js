@@ -11,6 +11,10 @@ function getAll(name, from = document) {
   return [];
 }
 
+function navigate(url) {
+  location.assign(url);
+}
+
 // Dom elements
 const sideBar = get(`[data-name="side_bar"]`);
 const sideBarButton = get(`[data-name="side_bar_button"]`);

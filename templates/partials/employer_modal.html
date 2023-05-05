@@ -42,14 +42,16 @@
           </div>
 
           <!-- form fields -->
-          <form id="employer-form">
+          <form id="employer-form" action={% url 'employer_form' %} method="post">
+            {% csrf_token %}
             <!-- first name -->
             <article class="mt-7">
               <input
                 class="w-full rounded-lg p-3"
                 placeholder="First name"
-                name="firstName"
+                name="first_name"
                 type="text"
+                required
               />
             </article>
 
@@ -58,8 +60,9 @@
               <input
                 class="w-full rounded-lg p-3"
                 placeholder="Surname"
-                name="surname"
+                name="last_name"
                 type="text"
+                required
               />
             </article>
 
@@ -70,24 +73,30 @@
                 placeholder="Company"
                 name="company"
                 type="text"
+                required
               />
             </article>
 
-            <!-- company name -->
+            <!-- email -->
             <article class="mt-4">
               <input
                 class="w-full rounded-lg p-3"
                 placeholder="Email"
                 name="email"
                 type="email"
+                required
               />
             </article>
 
-            <!-- company name -->
+            <!-- role -->
             <article class="mt-4">
-              <select class="w-full rounded-lg p-3" name="role">
-                <option value="">Role you are recruiting for</option>
-              </select>
+              <input
+                class="w-full rounded-lg p-3"
+                placeholder="Role"
+                name="role"
+                type="text"
+                required
+              />
             </article>
 
             <button
