@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('taggit', '0004_auto_20230501_1536'),
+        ('taggit', '0003_taggeditem_add_unique_index'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
