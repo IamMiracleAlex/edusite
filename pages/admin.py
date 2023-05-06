@@ -26,3 +26,6 @@ class EmployerAdmin(admin.ModelAdmin):
     list_filter = ('created_at',)
     search_fields = ('first_name', 'last_name', 'company', 'email', 'role')
     date_hierarchy = 'created_at'
+
+
+admin.site.site_header = 'Recruiture Admin'
