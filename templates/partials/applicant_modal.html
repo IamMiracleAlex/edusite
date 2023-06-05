@@ -1,9 +1,9 @@
 {% load static %}    
 	
-	<!-- ------ Employer Modal section ------ -->
+	<!-- ------ Applicant Modal section ------ -->
     <section
       aria-modal="true"
-      id="employer-modal"
+      id="applicant-modal"
       data-status="close"
       class="employer_modal_close transition-opacity duration-300 ease-out fixed flex justify-center items-center top-0 bottom-0 left-0 right-0 bg-[#00182ED9]"
     >
@@ -15,7 +15,7 @@
         <div class="w-full h-full md:max-h-[600px] hidden md:block">
           <img
             class="h-full md:max-h-[600px]"
-            src="{% static 'img/employer/employer-form-image-one.png' %}"
+            src="{% static 'img/applicant/image1.png' %}"
             alt=""
           />
         </div>
@@ -34,7 +34,7 @@
             <h3
               class="font-satoshi-bold text-[clamp(1.125rem,2.1vw,2rem)] text-[var(--color-medium-blue)] leading-6"
             >
-              Employer Form
+              Applicant Form
             </h3>
             <small class="text-[var(--color-medium-blue)]">
               Fill out these details to get started
@@ -42,7 +42,7 @@
           </div>
 
           <!-- form fields -->
-          <form id="employer-form" action={% url 'employer_form' %} method="post">
+          <form id="applicant-form" action={% url 'applicant_form' %} method="post" enctype='multipart/form-data'>
             {% csrf_token %}
             <!-- first name -->
             <article class="mt-7">
@@ -66,16 +66,6 @@
               />
             </article>
 
-            <!-- company name -->
-            <article class="mt-4">
-              <input
-                class="w-full rounded-lg p-3"
-                placeholder="Company"
-                name="company"
-                type="text"
-                required
-              />
-            </article>
 
             <!-- email -->
             <article class="mt-4">
@@ -99,6 +89,17 @@
               />
             </article>
 
+            <!-- Resume -->
+            <article class="mt-4">
+              <label class="text-[#949494]" for="">Resume</label>
+              <input
+                class="w-full rounded-lg p-3 text-[#949494]"
+                placeholder="Resume"
+                name="resume"
+                type="file"
+                required
+              />
+            </article>
             <button
               class="w-full text-white text-center bg-[var(--color-dark-green)] hover:bg-[var(--color-medium-green)] p-3 mt-7 rounded-lg"
             >
@@ -111,12 +112,12 @@
 
         <div
         data-status="close"
-          id="employer-success-modal-wrapper"
+          id="applicant-success-modal-wrapper"
           class="employer_modal_close flex justify-center items-center bg-[#00182ED9] transition-opacity duration-300 ease-out absolute top-0 left-0 right-0 bottom-0"
         >
           <!-- success modal -->
           <div
-            id="employer-success-modal"
+            id="applicant-success-modal"
             class="translate-y-[200%] bg-white w-[280px] sm:w-96 rounded-lg p-5 transition-transform duration-500"
           >
             <!-- header -->
@@ -158,7 +159,7 @@
               </button>
             </div>
           </div>
-    </div>
-       
+    </div>      
+
       </div>
     </section>

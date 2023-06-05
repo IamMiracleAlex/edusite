@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
 
-from pages.models import Employer, Post
+from pages.models import Employer, Post, Applicant
 
 
 def index(request):
@@ -46,6 +46,26 @@ def employer_form(request):
 
     try:
         Employer.objects.create(**data)
+        response['detail'] = 'Data recorded successfully'
+    except Exception as e:
+        response['detail'] = "Oops! Something went wrong. Please try again later"
+        print("error:", e)
+        return JsonResponse(response, status=500)
+
+    return JsonResponse(response)
+
+
+def applicant_form(request):
+    data = {name: request.POST.get(name, "") for name in request.POST 
+                if name != "csrfmiddlewaretoken"}
+    response = {}
+    
+    if Applicant.objects.filter(**data).exists():
+        response['detail'] = 'Data has already been recorded'
+        return JsonResponse(response, status=400)
+
+    try:
+        Applicant.objects.create(**data, resume=request.FILES.get("resume"))
         response['detail'] = 'Data recorded successfully'
     except Exception as e:
         response['detail'] = "Oops! Something went wrong. Please try again later"

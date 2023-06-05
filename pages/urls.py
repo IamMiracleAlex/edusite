@@ -11,4 +11,5 @@ urlpatterns = [
     path('blog', views.post_list, name='post_list'),
     path('blog/<int:pk>/<slug:slug>/', views.post_detail, name='post_detail'),
     path('employer-form', views.employer_form, name='employer_form'),
+    path('applicant-form', views.applicant_form, name='applicant_form'),
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

@@ -57,3 +57,18 @@ class Employer(models.Model):
     role = models.CharField(max_length=200)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return "{} {}".format(self.first_name, self.last_name)
+
+class Applicant(models.Model):
+    first_name = models.CharField(max_length=150)
+    last_name = models.CharField(max_length=150)
+    email = models.EmailField(max_length=200)
+    role = models.CharField(max_length=200)
+    resume = models.FileField(upload_to="resume")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return "{} {}".format(self.first_name, self.last_name)

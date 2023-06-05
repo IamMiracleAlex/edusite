@@ -51,9 +51,18 @@ class="sidebar__close transition-transform duration-200 ease-linear md:hidden w-
   </li>
 
   <li>
+	<button
+	  data-name="sidebar-applicant-btn"
+	  class="text-[clamp(16px,2vw,22px)] text-[var(--color-dark-blue)] hover:text-[var(--color-dark-green)] tracking-wide"
+	>
+	  <i class="bi bi-envelope-paper"></i> &nbsp; Applicant
+	</button>
+  </li>
+
+  <li>
 	<a
 	  class="text-[clamp(16px,2vw,22px)] text-[var(--color-dark-blue)] hover:text-[var(--color-dark-green)] tracking-wide"
-	  href="./html/blog.html"
+	  href="{% url 'post_list' %}"
 	  ><i class="bi bi-blockquote-left"></i> &nbsp; Blog</a
 	>
   </li>
@@ -61,7 +70,7 @@ class="sidebar__close transition-transform duration-200 ease-linear md:hidden w-
   <li>
 	<a
 	  class="text-[clamp(16px,2vw,22px)] text-[var(--color-dark-blue)] hover:text-[var(--color-dark-green)] tracking-wide"
-	  href="./html/about.html"
+	  href="{% url 'about' %}"
 	  ><i class="bi bi-journal-album"></i> &nbsp; About</a
 	>
   </li>
@@ -129,8 +138,8 @@ class="sidebar__close transition-transform duration-200 ease-linear md:hidden w-
 	  </p>
 	  <a
 		class="font-switzer-reg text-[rgba(11,28,44,0.7)] text-[clamp(1rem,1.2vw,1.2rem)] max-w-md underline"
-		href="mailto:recruiture@edubridgeacademy.com"
-		>recruiture@edubridgeacademy.com</a
+		href="mailto:hello@edubridgeacademy.com"
+		>hello@edubridgeacademy.com</a
 	  >
 	  <a
 		class="font-switzer-reg text-[rgba(11,28,44,0.7)] text-[clamp(1rem,1.2vw,1.2rem)] max-w-md underline"

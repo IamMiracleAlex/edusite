@@ -9,9 +9,19 @@ const employerForm = get("#employer-form");
 const allEmployerNavLink = getAll(`[data-name="employer-btn"]`);
 const allEmployerSidebarLink = getAll(`[data-name="sidebar-employer-btn"]`);
 
-const SuccessModalWrapper = get("#success-modal-wrapper");
-const SuccessModal = get("#success-modal");
-const SuccessModalBtn = get("button", SuccessModal);
+const applicantModal = get("#applicant-modal");
+const applicantForm = get("#applicant-form");
+const allApplicantNavLink = getAll(`[data-name="applicant-btn"]`);
+const allApplicantSidebarLink = getAll(`[data-name="sidebar-applicant-btn"]`);
+
+
+const EmployerSuccessModalWrapper = get("#employer-success-modal-wrapper");
+const EmployerSuccessModal = get("#employer-success-modal");
+const EmployerSuccessModalBtn = get("button", EmployerSuccessModal);
+
+const ApplicantSuccessModalWrapper = get("#applicant-success-modal-wrapper");
+const ApplicantSuccessModal = get("#applicant-success-modal");
+const ApplicantSuccessModalBtn = get("button", ApplicantSuccessModal);
 
 // variables
 const showModal = "employer_modal_open";
@@ -31,47 +41,61 @@ function handleModal(modalEl) {
   }
 }
 
-function handleModalFromSidebar() {
+function handleModalFromSidebar(modal) {
   handleSideBar(); //func declared in sidebar.js
-  handleModal(employerModal);
+  handleModal(modal);
 }
 
-function handleShowSuccessModal() {
+function handleShowSuccessModal(SuccessModalWrapper, SuccessModal) {
   handleModal(SuccessModalWrapper);
   SuccessModal.style.transform = "translateY(0px)";
 }
 
-function handleCloseSuccessModal() {
+function handleCloseSuccessModal(SuccessModalWrapper, SuccessModal) {
   SuccessModal.style.transform = "translateY(200%)";
   setTimeout(() => {
     handleModal(SuccessModalWrapper);
   }, 500);
 }
 
-// events
+// events - employer form
 allEmployerNavLink.forEach((link) => {
   link.addEventListener("click", () => handleModal(employerModal));
 });
 
 allEmployerSidebarLink.forEach((link) => {
-  link.addEventListener("click", handleModalFromSidebar);
+  link.addEventListener("click", () => handleModalFromSidebar(employerModal));
 });
 
 employerModal.addEventListener("click", (e) => {
   if (e.target === employerModal) handleModal(employerModal);
 });
 
-function sendData(employerForm) {
+// events - applicant form
+
+allApplicantNavLink.forEach((link) => {
+  link.addEventListener("click", () => handleModal(applicantModal));
+});
+
+allApplicantSidebarLink.forEach((link) => {
+  link.addEventListener("click", () => handleModalFromSidebar(applicantModal));
+});
+
+applicantModal.addEventListener("click", (e) => {
+  if (e.target === applicantModal) handleModal(applicantModal);
+});
+
+function sendData(form, SuccessModalWrapper, SuccessModal) {
   const xhr = new XMLHttpRequest();
 
   // Bind the FormData object and the form element
-  const form_data = new FormData(employerForm);
+  const form_data = new FormData(form);
 
   // Define what happens on successful data submission
   xhr.addEventListener("load", (event) => {
     if (event.target.status == 200) {
-      handleShowSuccessModal();
-      employerForm.reset();
+      handleShowSuccessModal(SuccessModalWrapper, SuccessModal);
+      form.reset();
 
     } else {
       
@@ -83,23 +107,39 @@ function sendData(employerForm) {
   });
 
   // Set up our request
-  xhr.open("POST", employerForm.action);
+  xhr.open("POST", form.action);
 
   // The data sent is what the user provided in the form
   xhr.send(form_data);
 }
 
+// Submit event for employer & applicant form 
 employerForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  sendData(employerForm)
+  sendData(employerForm, EmployerSuccessModalWrapper, EmployerSuccessModal)
 });
 
-SuccessModalWrapper.addEventListener("click", (e) => {
-  if (e.target === SuccessModalWrapper) {
-    handleCloseSuccessModal();
+applicantForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  sendData(applicantForm, ApplicantSuccessModalWrapper, ApplicantSuccessModal)
+});
+
+EmployerSuccessModalWrapper.addEventListener("click", (e) => {
+  if (e.target === EmployerSuccessModalWrapper) {
+    handleCloseSuccessModal(EmployerSuccessModalWrapper, EmployerSuccessModal);
   }
 });
 
-SuccessModalBtn.addEventListener("click", () => {
+ApplicantSuccessModalWrapper.addEventListener("click", (e) => {
+  if (e.target === ApplicantSuccessModalWrapper) {
+    handleCloseSuccessModal(ApplicantSuccessModalWrapper, ApplicantSuccessModal);
+  }
+});
+
+EmployerSuccessModalBtn.addEventListener("click", () => {
+  navigate("/");
+});
+
+ApplicantSuccessModalBtn.addEventListener("click", () => {
   navigate("/");
 });
